@@ -39,6 +39,7 @@ func main() {
 
 	multiverse = createUniverses()
 	connectUniverses(multiverse)
+	nextLifeColor()
 
 	for {
 		start = time.Now()
@@ -176,6 +177,12 @@ func displayStatsEverySecond() {
 		animationTime := time.Since(start)
 		animationFPS := int64(10 * time.Second / animationTime)
 		print("#", second, " screen=", newFullRefreshes-fullRefreshes, "fps animation=", animationTime.String(), "/", (animationFPS / 10), ".", animationFPS%10, "fps\r\n")
+
+		// update FPS characteristic
+		fpsValue[0] = byte(newFullRefreshes - fullRefreshes)
+		fpsValue[1] = byte(animationFPS / 10)
+		fpsCharacteristic.Write(fpsValue[:])
+
 		fullRefreshes = newFullRefreshes
 	}
 }
