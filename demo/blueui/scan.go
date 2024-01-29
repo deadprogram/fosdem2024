@@ -9,7 +9,7 @@ import (
 	"tinygo.org/x/bluetooth"
 )
 
-func (m model) updateScanning(msg tea.Msg) (tea.Model, tea.Cmd) {
+func (m model) updateScan(msg tea.Msg) (tea.Model, tea.Cmd) {
 	var cmd tea.Cmd
 	switch msg := msg.(type) {
 	case bluetooth.ScanResult:
@@ -40,10 +40,9 @@ func (m model) updateScanning(msg tea.Msg) (tea.Model, tea.Cmd) {
 			adapter.StopScan()
 		case "enter":
 			adapter.StopScan()
-			m.discover = true
+			m.state = "discovering"
 
 			// now go discover services
-			// m.devices.SelectedRow()[0]
 			return m.updateDiscover(connectDeviceMsg{})
 		}
 	}

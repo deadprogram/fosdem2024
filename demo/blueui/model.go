@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 
 	"github.com/charmbracelet/bubbles/list"
 	"github.com/charmbracelet/bubbles/spinner"
@@ -12,20 +13,18 @@ import (
 )
 
 type model struct {
-	w, h    int
-	err     error
-	spinner spinner.Model
+	w, h int
+	err  error
 
-	discover bool
-	devices  table.Model
-
-	sr chan bluetooth.ScanResult
+	state        string
+	spinner      spinner.Model
+	devices      table.Model
+	servicesList list.Model
 
 	connected bool
+	sr        chan bluetooth.ScanResult
 	device    *bluetooth.Device
-
-	servicesList list.Model
-	services     []bluetooth.DeviceService
+	services  []bluetooth.DeviceService
 }
 
 type connectDeviceMsg struct{}
@@ -46,6 +45,8 @@ func newModel() model {
 }
 
 func (m model) Init() tea.Cmd {
+	m.state = "scanning"
+
 	return tea.Batch(
 		m.spinner.Tick,
 		m.scanForDevices(),
@@ -82,6 +83,7 @@ func (m *model) connectToDevice(address string) tea.Cmd {
 
 		m.device = &d
 		m.connected = true
+		m.state = "discovering"
 		return discoverServicesMsg{}
 	}
 }
@@ -109,13 +111,34 @@ func (m *model) discoverServices() tea.Cmd {
 				return errMsg{err}
 			}
 
+			// buffer to retrieve characteristic data
+			buf := make([]byte, 255)
 			for _, c := range chars {
+				description := ""
+
+				mtu, err := c.GetMTU()
+				if err != nil {
+					description = fmt.Sprintf(" mtu: %s", err.Error())
+				} else {
+					description = fmt.Sprintf(" mtu: %d", mtu)
+				}
+
+				n, err := c.Read(buf)
+				if err != nil {
+					description += fmt.Sprintf(" data: %s", err.Error())
+				} else {
+					description += fmt.Sprintf(" data(%d): %s", n, string(buf[:n]))
+				}
+
 				items = append(items, item{
-					isService: false,
-					uuid:      c.UUID().String(),
+					isService:   false,
+					uuid:        c.UUID().String(),
+					description: description,
 				})
 			}
 		}
+
+		m.state = "discovered"
 
 		return servicesDiscoveredMsg{items}
 	}
@@ -134,15 +157,25 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		}
 	}
 
-	if m.discover {
+	switch m.state {
+	case "scanning":
+		return m.updateScan(msg)
+	case "discovering":
+		return m.updateDiscover(msg)
+	case "discovered":
 		return m.updateDiscover(msg)
 	}
 
-	return m.updateScanning(msg)
+	return m.updateScan(msg)
 }
 
 func (m model) View() string {
-	if m.discover {
+	switch m.state {
+	case "scanning":
+		return m.scanView()
+	case "discovering":
+		return m.discoveringView()
+	case "discovered":
 		return m.discoverView()
 	}
 
