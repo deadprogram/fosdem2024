@@ -10,9 +10,6 @@ import (
 var (
 	multiverse []*game.ParallelUniverse
 
-	// tracks the current color used on the LED cube
-	ledColor = [3]byte{0x00, 0x00, 0x00}
-
 	dead  = color.RGBA{0, 0, 0, 255}
 	red   = color.RGBA{255, 0, 0, 255}
 	green = color.RGBA{0, 255, 0, 255}
@@ -22,14 +19,17 @@ var (
 	currentlife = 1
 	alive       = green
 
-	// tracks the current FPS of the LED cube for notifications
-	fpsValue = [2]byte{0x00, 0x00}
-
 	fullRefreshes  uint
 	previousSecond int64
 	restartTime    int64
 
 	start time.Time
+
+	// controls which color is used on the LED cube
+	ledColor = [3]byte{0x00, 0x00, 0x00}
+
+	// tracks the current FPS of the LED cube for notifications
+	fpsValue = [2]byte{0x00, 0x00}
 )
 
 func main() {
@@ -38,13 +38,9 @@ func main() {
 	multiverse = createUniverses()
 	connectUniverses(multiverse)
 
-	// set the initial color of the LED cube
+	// set cube starting color
 	nextLifeColor()
 
-	runCube()
-}
-
-func runCube() {
 	for {
 		start = time.Now()
 
