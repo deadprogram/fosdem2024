@@ -13,12 +13,7 @@ var (
 	cubeColorCharacteristicUUID = [16]byte{0xa0, 0xb4, 0x00, 0x02, 0x92, 0x6d, 0x4d, 0x61, 0x98, 0xdf, 0x8c, 0x5c, 0x62, 0xee, 0x53, 0xb3}
 
 	ledColorCharacteristic bluetooth.Characteristic
-
-	// controls which color is used on the LED cube
-	ledColor = [3]byte{0x00, 0x00, 0x00}
-
-	fpsCharacteristic bluetooth.Characteristic
-	fpsValue          = [2]byte{0x00, 0x00}
+	fpsCharacteristic      bluetooth.Characteristic
 )
 
 var connected bool
