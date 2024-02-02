@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+
+<title>Go Without Wires Strikes Back - FOSDEM 2024</title>
+
+<meta name="description" content="Go Without Wires Strikes Back - FOSDEM 2024">
+<meta name="author" content="Ron Evans">
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<link rel="stylesheet" href="css/reveal.css">
+<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+<!-- For syntax highlighting -->
+<link rel="stylesheet" href="lib/css/tomorrow.css">
+
+<link rel="stylesheet" href="css/hybrid.css">
+
+<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+<script>
+	document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+</script>
+
+<!--[if lt IE 9]>
+<script src="lib/js/html5shiv.js"></script>
+<![endif]-->
+</head>
+
+<body>
+	<div class="reveal">
+
+	<!-- Any section element inside of this container is displayed as a slide -->
+	<div class="slides">
+		<section>
+			<section>
+				<h1>Go Without Wires Strikes Back</h1>
+				<h2>FOSDEM 2024</h2>
+				<h2>Ron Evans - @deadprogram</h2>
+			</section>
+		</section>
+
+		<section>
+			<h2>FOSDEM 2021</h2>
+		</section>
+
+		<section>
+			<h2>Go Without Wires</h2>
+		</section>
+
+		<section>
+			<div class="image-container">
+				<img src="images/gobluetooth.png">
+			</div>
+			<h3>Go Bluetooth</h3>
+			<h3>tinygo.org/bluetooth</h3>
+		</section>
+
+		<section>
+			<h2>FOSDEM 2022</h2>
+		</section>
+
+		<section>
+			<h2>Go Further Without Wires</h2>
+		</section>
+
+		<section>
+			<div class="image-container">
+				<img src="images/wifi-logo.png">
+			</div>
+		</section>
+
+		<section>
+			<h2>FOSDEM 2023</h2>
+		</section>
+
+		<section>
+			<h2>Go Even Further Without Wires</h2>
+		</section>
+
+		<section>
+			<div class="image-container">
+				<img src="images/lorawan-logo.png">
+			</div>
+		</section>
+
+		<section>
+			<div class="image-container">
+				<img src="images/hackaday-tinyglobo.png">
+			</div>
+		</section>
+
+		<section>
+			<h1>FOSDEM 2024</h1>
+		</section>
+
+		<section>
+			<h1>Go Without Wires</h1>
+			<h1>Strikes Back</h1>
+		</section>
+
+		<section>
+			<h2>Ron Evans (@deadprogram)</h2>
+		</section>
+
+		<section>
+			<h1>Technologist For Hire</h1>
+		</section>
+	
+		<section>
+			<div class="image-container">
+				<img src="images/thg-logo.png">
+			</div>
+			<h3>hybridgroup.com</h3>
+		</section>
+
+		<section>
+			<h2>Software that makes</h2>
+			<h2>your hardware work</h2>
+		</section>
+		
+		<section>
+			<h2>Open Source Projects</h2>
+		</section>
+  
+		<section>
+			<div class="image-container">
+			  <img src="images/tinygo-logo.png">
+			</div>
+			<h3>tinygo.org</h3>          
+		</section>
+
+		<section>
+			<h2>Secret plans for Go wireless</h2>
+			<h2>communication are no longer secret</h2>
+		</section>
+
+		<section>
+			<div class="image-container">
+			  <img src="images/network-scopes.png">
+			</div>
+			<h3>Network Types By Spatial Scale</h3>
+		</section>
+
+		<section>
+			<h2>There is a whole universe</h2>
+			<h2>of frequencies to explore</h2>
+		</section>
+
+		<section>
+			<h2>Thanks to the community</h2>
+		</section>
+
+		<section>
+			<h2>The work continues...</h2>
+		</section>
+
+		<section>
+			<div class="image-container">
+				<img src="images/gobluetooth.png">
+			</div>
+			<h3>Go Bluetooth</h3>
+		</section>
+
+		<section>
+			<section>
+				<h2>Linux</h2>
+			</section>
+
+			<section>
+				<h2>macos</h2>
+			</section>
+
+			<section>
+				<h2>Windows</h2>
+			</section>
+
+			<section>
+				<h2>Bare metal on nordic semi</h2>
+			</section>
+		</section>
+
+		<section>
+			<section>
+				<h2>new Bare metal support</h2>
+			</section>
+			<section>
+				<h2>Bluetooth Host Controller Interface (HCI)</h2>
+			</section>
+			<section>
+				<h2>?</h2>
+			</section>
+		</section>
+
+		<section>
+			<h2>Typical wireless embedded device Architecture</h2>
+		</section>
+
+		<section>
+			<div class="image-container">
+			  <img src="images/typical-embedded-arch.png">
+			</div>
+		</section>
+
+		<section>
+			<h2>Many boards use this setup</h2>
+		</section>
+
+		<section>
+			<h2>Arduino</h2>
+		</section>
+
+		<section>
+			<h2>Adafruit</h2>
+		</section>
+
+		<section>
+			<h2>Espressif ESP32</h2>
+			<h3>Wifi + Bluetooth</h3>
+		</section>
+
+		<section>
+			<h2>NINA-FW</h2>
+			<h3>github.com/arduino/nina-fw</h3>
+		</section>
+
+		<section>
+			<div class="image-container">
+			  <img src="images/ble-hci-arch.png">
+			</div>
+		</section>
+
+		<section>
+			<h2>Bluetooth support now enabled on many boards</h2>
+		</section>
+
+		<section>
+			<h2>how bluetooth works; tldr version</h2>
+		</section>
+
+		<section>
+			<div class="image-container">
+			  <img src="images/ble-arch-scanning.png">
+			</div>
+		</section>
+
+		<section>
+			<div class="image-container">
+			  <img src="images/ble-arch-advertising.png">
+			</div>
+		</section>
+
+		<section>
+			<div class="image-container">
+			  <img src="images/ble-arch-connect.png">
+			</div>
+		</section>
+
+		<section>
+			<div class="image-container">
+			  <img src="images/microcontrollers_GattStructure.png">
+			</div>
+		</section>
+
+		<!-- demo 0 -->
+		<section>
+			<section>
+				<h2>TinyScan</h2>
+			</section>
+
+			<section>
+				<h2>Bluetooth Warscanner As A Conference Badge</h2>
+			</section>
+
+			<section>
+				<h2>Adafruit PyBadge</h2>
+				<h3>Microchip ATSAMD51J18</h3>
+				<h3>ARM Cortex M4</h3>
+				<h3>32-bit processor</h3>
+				<h3>120 Mhz</h3>
+				<h3>256K Flash</h3>
+			</section>
+
+			<section>
+				<h2>Adafruit Airlift Wifi Featherwing</h2>
+				<h3>Espressif ESP32-MINI-1</h3>
+				<h3>Xtensa Dual-core LX6</h3>
+				<h3>240 Mhz</h3>
+				<h3>520k Flash</h3>
+			</section>
+
+			<section>
+				<h2>tinyscan Hardware</h2>
+			</section>
+
+			<section>
+				<h2>tinyscan Code</h2>
+				<h3><a target="_blank" href="https://github.com/tinygo-org/bluetooth/blob/dev/examples/tinyscan/main.go">See the code</a></h3>
+			</section>
+
+			<section>
+				<h2>tinyscan Demo</h2>
+			</section>
+		</section>
+
+		<!-- demo X -->
+		<section>
+			<section>
+				<h2>Cube Life</h2>
+			</section>
+
+			<section>
+				<h2>Conways Game of Life</h2>
+				<h2>As An LED Cube</h2>
+				<h2>With Bluetooth Control</h2>
+			</section>
+
+			<section>
+				<div class="image-container">
+				  <img src="images/conway-game.gif">
+				</div>
+			</section>
+
+			<section>
+				<h2>6 parallel games of life</h2> 
+			</section>
+
+			<section>
+				<h2>Adafruit Metro M4 Airlift +</h2> 
+				<h2>6 hub75 displays</h2>
+			</section>
+	
+			<section>
+				<h2>Adafruit Metro M4 Airlift</h2>
+				<h3>Microchip SAMD51</h3>
+				<h3>ARM Cortex M4</h3>
+				<h3>32-bit processor</h3>
+				<h3>120 Mhz</h3>
+				<h3>192K RAM</h3>
+			</section>
+
+			<section>
+				<h3>Espressif ESP32-WROOM-32</h3>
+				<h3>Xtensa Dual-core LX6</h3>
+				<h3>240 Mhz</h3>
+				<h3>520k Flash</h3>
+			</section>
+
+			<section>
+				<h2>hub75 led panel</h2>
+			</section>
+		
+			<section>
+				<div class="image-container">
+					<img src="images/cubelife-hardware.png">
+				</div>
+			</section>
+
+			<section>
+				<h2>cubelife Hardware</h2>
+			</section>
+
+			<section>
+				<h2>cubelife code</h2>
+				<h3><a target="_blank" href="https://github.com/deadprogram/fosdem2024/blob/main/demo/cubelife/main.go">See the code</a></h3>
+			</section>
+		<!-- CAMERA: shows cube during demos -->
+			<section>
+				<h2>cubelife demo</h2>
+			</section>	
+		</section>		
+
+		<!-- demo X -->
+		<section>
+			<section>
+				<h2>Flightbadge</h2>
+			</section>
+
+			<section>
+				<h2>Flight controller badge for</h2>
+				<h2>Bluetooth Drones</h2>
+			</section>
+
+			<section>
+				<h2>Adafruit PyBadge +</h2>
+				<h2>Airlift Featherwing +</h2>
+				<h2>Parrot Minidrone</h2>
+			</section>
+
+			<section>
+				<div class="image-container">
+					<img src="images/flightbadge-ble.png">
+				</div>
+			</section>
+
+			<section>
+				<h2>flightbadge Hardware</h2>
+			</section>
+
+			<section>
+				<h2>flightbadge Code</h2>
+				<h3><a target="_blank" href="">See the code</a></h3>
+			</section>
+
+			<section>
+				<h2>flightbadge Demo</h2>
+			</section>
+		</section>
+
+
+		<section>
+			<div class="image-container">
+				<img src="images/wifi-logo.png">
+			</div>
+		</section>
+
+		<section>
+			<h2>Major rewrite of TinyGo networking support</h2>
+		</section>
+
+		<section>
+			<h2>tinygo.org/x/net</h2>
+		</section>
+
+		<section>
+			<h2>tinygo.org/x/drivers/netdev</h2>
+		</section>
+
+		<section>
+			<h2>tinygo.org/x/drivers/netlink</h2>
+		</section>
+
+		<section>
+			<h2>We want Go code that uses networking to run on bare metal</h2>
+		</section>
+
+		<section>
+			<h2>More flight testing</h2>
+		</section>
+
+		<!-- demo X -->
+		<section>
+			<section>
+				<h2>Flightbadge</h2>
+				<h3>Adafruit PyBadge + Airlift Featherwing +</h3>
+				<h3>DJI Tello</h3>
+			</section>
+
+			<section>
+				<div class="image-container">
+					<img src="images/flightbadge-wifi.png">
+				</div>
+			</section>
+
+			<section>
+				<h2>tello Hardware</h2>
+			</section>
+
+			<section>
+				<h2>flightbadge Code</h2>
+				<h3><a target="_blank" href="">See the code</a></h3>
+			</section>
+
+			<section>
+				<h2>flightbadge Demo</h2>
+			</section>
+		</section>
+
+		<section>
+			<h2>There is so much more happening</h2>
+		</section>
+
+		<section>
+			<h2>More wireless chips</h2>
+		</section>
+
+		<section>
+			<h2>More wireless protocols</h2>
+		</section>
+
+		<section>
+			<h2>Connect all the things using Go...</h2>
+			<h2>without wires</h2>
+		</section>
+
+		<section>
+			<h2>tinygo.org</h2>
+		</section>
+
+		<section>
+			<h1>Thank you!</h1>
+			<h2>@deadprogram</h2>
+			<h2>Technologist For Hire</h2>
+		</section>	
+	  </div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+	<script src="js/hybrid.js"></script>
+
+	<script>
+
+	  // Full list of configuration options available here:
+	  // https://github.com/hakimel/reveal.js#configuration
+	  Reveal.initialize({
+		controls: true,
+		progress: true,
+		history: true,
+		center: true,
+
+		theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+		transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+		// Optional libraries used to extend on reveal.js
+		dependencies: [
+		  { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+		  { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+		  { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+		  { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+		  { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+		  { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+		]
+	  });
+
+	</script>
+
+  </body>
+</html>
